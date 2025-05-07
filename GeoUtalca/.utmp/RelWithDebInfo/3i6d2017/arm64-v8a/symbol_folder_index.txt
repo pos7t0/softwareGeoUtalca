@@ -1,0 +1,1 @@
+C:\Users\rodri\Documents\Github\softwareGeoUtalca\GeoUtalca\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\3i6d2017\obj\arm64-v8a
