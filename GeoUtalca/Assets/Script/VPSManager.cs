@@ -24,12 +24,25 @@ public class VPSManager : MonoBehaviour
     [SerializeField] private ARAnchorManager m_arAnchorManager;
     [SerializeField] private List<GeospatialObject> m_geospatialObjects = new List<GeospatialObject>();
 
+    private float timer=0;
+
 
     private void Start()
     {
         VerifyGeospatialSupport();
     }
 
+    private void Update()
+    {
+        //var pose = m_earthManager.CameraGeospatialPose;
+        //ShowDebug.Instance.ShowMessage(
+        //    $"Tracking: {m_earthManager.EarthTrackingState}\n" +
+        //    $"Lat: {pose.Latitude:F6}\nLon: {pose.Longitude:F6}\nAlt: {pose.Altitude:F1}\n" +
+        //    $"H-Acc: {pose.HorizontalAccuracy:F1}m\nV-Acc: {pose.VerticalAccuracy:F1}m"
+        //);
+
+        timer += Time.deltaTime;
+    }
     private void VerifyGeospatialSupport()
     {
         var result = m_earthManager.IsGeospatialModeSupported(GeospatialMode.Enabled);
@@ -38,6 +51,7 @@ public class VPSManager : MonoBehaviour
             case FeatureSupported.Supported:
                 ShowDebug.Instance.ShowMessage("Ready to use VPS");
                 Debug.Log("Ready to use VPS");
+                
                 PlaceObject();
                 break;
             case FeatureSupported.Unknown:
@@ -58,6 +72,7 @@ public class VPSManager : MonoBehaviour
     {
         if (m_earthManager.EarthTrackingState==TrackingState.Tracking)
         {
+            ShowDebug.Instance.ShowMessage("TrackingState=tracking");
             var geospatialPose = m_earthManager.CameraGeospatialPose;
 
             foreach (var obj in m_geospatialObjects)
@@ -71,6 +86,7 @@ public class VPSManager : MonoBehaviour
         }
         else if (m_earthManager.EarthTrackingState==TrackingState.None)
         {
+            ShowDebug.Instance.ShowMessage("TrackingState=None"+timer);
             Invoke("PlaceObject", 5.0f);
         }
     }

@@ -188,6 +188,22 @@ namespace Google.XR.ARCoreExtensions.Samples.Geospatial
         /// </summary>
         public Text DebugText;
 
+        [Serializable]
+        public struct GeospatialObject
+        {
+            public GameObject ObjectPrefab;
+            public EarthPosition EarthPosition;
+        }
+        [Serializable]
+        public struct EarthPosition
+        {
+            public double Latitude;
+            public double Longitude;
+            public double Altitude;
+        }
+
+        [SerializeField] private List<GeospatialObject> m_geospatialObjects = new List<GeospatialObject>();
+
         /// <summary>
         /// Help message shown while localizing.
         /// </summary>
@@ -764,6 +780,29 @@ namespace Google.XR.ARCoreExtensions.Samples.Geospatial
             else
             {
                 InfoText.text = "GEOSPATIAL POSE: not tracking";
+            }
+        }
+
+
+        public void PlaceObject()
+        {
+            if (EarthManager.EarthTrackingState == TrackingState.Tracking)
+            {
+                
+                var geospatialPose = EarthManager.CameraGeospatialPose;
+
+                foreach (var obj in m_geospatialObjects)
+                {
+                    var earthPosition = obj.EarthPosition;
+                    var objAnchor = ARAnchorManagerExtensions.AddAnchor(AnchorManager, earthPosition.Latitude, earthPosition.Longitude, earthPosition.Altitude, Quaternion.identity);
+                    Instantiate(obj.ObjectPrefab, objAnchor.transform);
+                }
+
+
+            }
+            else if (EarthManager.EarthTrackingState == TrackingState.None)
+            {
+                
             }
         }
 

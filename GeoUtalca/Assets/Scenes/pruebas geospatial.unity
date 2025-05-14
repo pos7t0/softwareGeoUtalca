@@ -572,6 +572,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1457873314240767659, guid: e22ff945648e3f546afac12e3f8e9b84,
         type: 3}
+      propertyPath: m_earthManager
+      value: 
+      objectReference: {fileID: 1598774881}
+    - target: {fileID: 1457873314240767659, guid: e22ff945648e3f546afac12e3f8e9b84,
+        type: 3}
       propertyPath: m_arAnchorManager
       value: 
       objectReference: {fileID: 1598774880}
@@ -641,7 +646,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: lol
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3418932867854061522, guid: e22ff945648e3f546afac12e3f8e9b84, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -657,7 +663,7 @@ GameObject:
   - component: {fileID: 986678565}
   - component: {fileID: 986678564}
   m_Layer: 0
-  m_Name: xd
+  m_Name: DeBugger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +691,7 @@ Transform:
   m_GameObject: {fileID: 986678563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1081.1509, y: 771.774, z: 0}
+  m_LocalPosition: {x: 2174, y: 771.774, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -905,6 +911,7 @@ GameObject:
   - component: {fileID: 1598774878}
   - component: {fileID: 1598774877}
   - component: {fileID: 1598774880}
+  - component: {fileID: 1598774881}
   m_Layer: 0
   m_Name: XR Origin (Mobile AR)
   m_TagString: Untagged
@@ -1008,6 +1015,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AnchorPrefab: {fileID: 0}
+--- !u!114 &1598774881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598774874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04013b89158ee479c9d622e942e3b60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1637498709
 GameObject:
   m_ObjectHideFlags: 0
