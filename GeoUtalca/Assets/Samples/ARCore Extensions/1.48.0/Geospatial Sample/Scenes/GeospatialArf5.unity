@@ -817,15 +817,15 @@ MonoBehaviour:
   - ObjectPrefab: {fileID: 919132149155446097, guid: 23012d904fe2f4c4ca600721eb0c3c46,
       type: 3}
     EarthPosition:
-      Latitude: -35.404673
-      Longitude: -71.632047
-      Altitude: 125.6
+      Latitude: -35.41914
+      Longitude: -71.606597
+      Altitude: 149.54
   - ObjectPrefab: {fileID: 919132149155446097, guid: 23012d904fe2f4c4ca600721eb0c3c46,
       type: 3}
     EarthPosition:
       Latitude: -35.404573
       Longitude: -71.631846
-      Altitude: 125.98
+      Altitude: 149.54
 --- !u!4 &384014292
 Transform:
   m_ObjectHideFlags: 0
