@@ -27,13 +27,15 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
         [SerializeField]
         Transform[] _waypoints;
+        [SerializeField] private Vector2 puntoFijo;
         private List<Vector3> _cachedWaypoints;
+
+        [HideInInspector]
+        public List<Vector2d> geoRoutePoints = new List<Vector2d>(); // coordenadas GPS de la ruta
 
         [SerializeField]
         [Range(1, 10)]
         private float UpdateFrequency = 2;
-
-
 
         private Directions _directions;
         private int _counter;
@@ -43,6 +45,10 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
         protected virtual void Awake()
         {
+            Vector3 newWorldPos = Conversions.GeoToWorldPosition(
+                puntoFijo.x, puntoFijo.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+
+            _waypoints[0].position = newWorldPos; // el primer waypoint se actualiza
             if (_map == null)
             {
                 _map = FindObjectOfType<AbstractMap>();
@@ -54,6 +60,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
         public void Start()
         {
+
             _cachedWaypoints = new List<Vector3>(_waypoints.Length);
             foreach (var item in _waypoints)
             {
@@ -135,6 +142,8 @@ namespace Mapbox.Unity.MeshGeneration.Factories
             CreateGameObject(meshData);
 
             var pathPoints = response.Routes[0].Geometry;
+            geoRoutePoints.Clear();
+            geoRoutePoints.AddRange(pathPoints); // guarda la ruta completa
             int total = pathPoints.Count;
             if (total < 4)
             {
@@ -187,6 +196,23 @@ namespace Mapbox.Unity.MeshGeneration.Factories
             _directionsGO.AddComponent<MeshRenderer>().material = _material;
             return _directionsGO;
         }
+
+        public void UpdateMovingWaypoint(double latitude, double longitude)
+        {
+            if (_waypoints.Length < 2)
+            {
+                Debug.LogWarning("Se requieren al menos 2 waypoints (inicio y destino).");
+                return;
+            }
+
+            Vector3 newWorldPos = Conversions.GeoToWorldPosition(
+                latitude, longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+
+            _waypoints[1].position = newWorldPos; // el segundo waypoint se actualiza
+        }
+
     }
+
+
 
 }

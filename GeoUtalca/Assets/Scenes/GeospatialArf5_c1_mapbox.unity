@@ -943,7 +943,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: craneo (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5754084199372789682, guid: 23012d904fe2f4c4ca600721eb0c3c46, type: 3}
+    - {fileID: -7511558181221131132, guid: 23012d904fe2f4c4ca600721eb0c3c46, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1210,6 +1212,7 @@ MonoBehaviour:
       Latitude: -35.419051
       Longitude: -71.60666
       Altitude: 120.45
+  directionsFactory: {fileID: 1934755344}
 --- !u!4 &534125952
 Transform:
   m_ObjectHideFlags: 0
@@ -5382,7 +5385,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: craneo
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5754084199372789682, guid: 23012d904fe2f4c4ca600721eb0c3c46, type: 3}
+    - {fileID: -7511558181221131132, guid: 23012d904fe2f4c4ca600721eb0c3c46, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5617,6 +5622,8 @@ MonoBehaviour:
   _waypoints:
   - {fileID: 1859731039}
   - {fileID: 272212786}
+  puntoFijo: {x: -35.418255, y: -71.606094}
+  geoRoutePoints: []
   UpdateFrequency: 2
 --- !u!1 &1967606260
 GameObject:

@@ -5,6 +5,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using Google.XR.ARCoreExtensions;
 using TMPro;
+using Mapbox.Unity.MeshGeneration.Factories;
 
 public class SimpleGeospatialController : MonoBehaviour
 {   
@@ -29,7 +30,8 @@ public class SimpleGeospatialController : MonoBehaviour
     }
 
     [SerializeField] private List<GeospatialObject> m_geospatialObjects = new List<GeospatialObject>();
-    
+    [SerializeField] private DirectionsFactory directionsFactory; // arrastra el GameObject que tiene DirectionsFactory
+
 
     void Update()
     {
@@ -52,27 +54,26 @@ public class SimpleGeospatialController : MonoBehaviour
             $"Longitude: {pose.Longitude:F6}\n" +
             $"Altitud: {pose.Altitude:F2}m\n" +
             $"Orientation Yaw Accuracy: {pose.OrientationYawAccuracy:F2}°";
+        directionsFactory.UpdateMovingWaypoint(pose.Latitude,pose.Longitude);
     }
 
     public void PlaceObject()
     {
-        if (EarthManager.EarthTrackingState == TrackingState.Tracking)
+        if (EarthManager.EarthTrackingState != TrackingState.Tracking)
+            return;
+
+        foreach (var geoPoint in directionsFactory.geoRoutePoints)
         {
+            var anchor = ARAnchorManagerExtensions.AddAnchor(
+                AnchorManager,
+                geoPoint.x, geoPoint.y, 149.40, // Altitud 0 o puedes calcularla
+                Quaternion.identity);
 
-            var geospatialPose = EarthManager.CameraGeospatialPose;
-
-            foreach (var obj in m_geospatialObjects)
+            if (anchor != null && m_geospatialObjects.Count > 0)
             {
-                var earthPosition = obj.EarthPosition;
-                var objAnchor = ARAnchorManagerExtensions.AddAnchor(AnchorManager, earthPosition.Latitude, earthPosition.Longitude, earthPosition.Altitude, Quaternion.identity);
-                Instantiate(obj.ObjectPrefab, objAnchor.transform);
+                // Puedes usar el primer prefab de la lista, o tener uno especial para esto
+                Instantiate(m_geospatialObjects[0].ObjectPrefab, anchor.transform);
             }
-
-
-        }
-        else if (EarthManager.EarthTrackingState == TrackingState.None)
-        {
-
         }
     }
 }
