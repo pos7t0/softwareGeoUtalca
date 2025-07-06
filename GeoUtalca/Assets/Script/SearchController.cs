@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SearchController : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class SearchController : MonoBehaviour
                 LocationData loc = new LocationData(line.Trim());
                 if (!string.IsNullOrEmpty(loc.name)) allLocations.Add(loc);
             }
+
+            allLocations.Sort(CompareLocationsSmart);
         }
         else
         {
@@ -48,6 +51,14 @@ public class SearchController : MonoBehaviour
             {
                 GameObject newItem = Instantiate(resultItemPrefab, resultsParent);
                 newItem.GetComponentInChildren<TMP_Text>().text = item.name;
+
+                Button button = newItem.GetComponentInChildren<Button>();
+                if(button != null)
+                {
+                    LocationData capturedItem = item;
+                    button.onClick.AddListener(() => GameManager.Instance.SetSelectedLocation(capturedItem));
+                }
+
                 spawnedItems.Add(newItem);
             }
         }
@@ -58,5 +69,33 @@ public class SearchController : MonoBehaviour
         foreach (GameObject obj in spawnedItems)
             Destroy(obj);
         spawnedItems.Clear();
+    }
+
+    private int CompareLocationsSmart(LocationData a, LocationData b)
+    {
+        string nameA = a.name;
+        string nameB = b.name;
+
+        // alphabetically
+        int alphaCompare = string.Compare(nameA, nameB, System.StringComparison.OrdinalIgnoreCase);
+        if (alphaCompare != 0)
+            return alphaCompare;
+
+        // trailing numbers
+        int numberA = ExtractTrailingNumber(nameA);
+        int numberB = ExtractTrailingNumber(nameB);
+
+        return numberA.CompareTo(numberB);
+    }
+
+    private int ExtractTrailingNumber(string input)
+    {
+        System.Text.RegularExpressions.Match match = System.Text.RegularExpressions.Regex.Match(input, @"\d+");
+        if (match.Success)
+        {
+            int.TryParse(match.Value, out int number);
+            return number;
+        }
+        return 0; // if no number found
     }
 }

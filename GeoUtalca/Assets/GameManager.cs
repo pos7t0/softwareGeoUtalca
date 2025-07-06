@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance { get; private set; }
     private string rutaArchivo => Path.Combine(Application.dataPath, "Save/cosmeticos.txt");
+
+    private LocationData selectedLocation;
 
     [System.Serializable]
     public class Cosmetico
@@ -74,6 +75,12 @@ public class GameManager : MonoBehaviour
         string json = JsonUtility.ToJson(contenedor, true);
         File.WriteAllText(rutaArchivo, json);
         Debug.Log("Cosméticos guardados en: " + rutaArchivo);
+    }
+
+    public void SetSelectedLocation (LocationData location)
+    {
+        selectedLocation = location;
+        Debug.Log(selectedLocation.latitude +" , "+selectedLocation.longitude + " , " + selectedLocation.altitude);
     }
 
 
