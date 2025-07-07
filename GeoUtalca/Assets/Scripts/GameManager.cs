@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -81,6 +82,11 @@ public class GameManager : MonoBehaviour
     {
         selectedLocation = location;
         Debug.Log(selectedLocation.latitude +" , "+selectedLocation.longitude + " , " + selectedLocation.altitude);
+    }
+
+    public void GoNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 

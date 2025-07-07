@@ -57,6 +57,7 @@ public class SearchController : MonoBehaviour
                 {
                     LocationData capturedItem = item;
                     button.onClick.AddListener(() => GameManager.Instance.SetSelectedLocation(capturedItem));
+                    button.onClick.AddListener(() => GameManager.Instance.GoNextScene());
                 }
 
                 spawnedItems.Add(newItem);
