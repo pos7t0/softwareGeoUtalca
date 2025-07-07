@@ -43,10 +43,22 @@ namespace Mapbox.Unity.MeshGeneration.Factories
         GameObject _directionsGO;
         private bool _recalculateNext;
 
+    
+
+
         protected virtual void Awake()
-        {
+        { 
+            LocationData locdat = GameManager.Instance.selectedLocation;
+
+            /*
             Vector3 newWorldPos = Conversions.GeoToWorldPosition(
                 puntoFijo.x, puntoFijo.y, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+            */
+
+            // Convertir latitud/longitud a posición en el mundo
+            Vector3 newWorldPos = Conversions.GeoToWorldPosition(
+                locdat.latitude, locdat.longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz();
+
 
             _waypoints[0].position = newWorldPos; // el primer waypoint se actualiza
             if (_map == null)

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private string rutaArchivo => Path.Combine(Application.dataPath, "Save/cosmeticos.txt");
 
-    private LocationData selectedLocation;
+    public LocationData selectedLocation;
 
     [System.Serializable]
     public class Cosmetico
