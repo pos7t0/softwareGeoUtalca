@@ -175,7 +175,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
                     geoPoint.x, geoPoint.y, _map.CenterMercator, _map.WorldRelativeScale
                 ).ToVector3xz();
 
-                Instantiate(puntoRA, worldPos, Quaternion.identity);
+                Instantiate(GameManager.Instance.pathPoint, worldPos, Quaternion.identity);
             }
         }
 

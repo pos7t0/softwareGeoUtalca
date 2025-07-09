@@ -1,13 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine;
 
-public class GM : MonoBehaviour
+public class ShopController : MonoBehaviour
 {
-    public static GM Instance;
+    public static ShopController Instance;
 
     public int money = 600;
     public TMP_Text moneyText;
@@ -17,10 +14,7 @@ public class GM : MonoBehaviour
     // Lista de objetos comprados
     public List<GameObject> purchasedItems = new List<GameObject>();
 
-    public LocationData selectedLocation;
-
-    public GameObject pathPoint;
-    public List<SelectModel> customizeButtons = new List<SelectModel>();
+    public List<GameObject> customizeButtons = new List<GameObject>();
 
     private void Awake()
     {
@@ -28,10 +22,9 @@ public class GM : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
     }
-
-    private void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         UpdateMoneyUI();
     }
@@ -58,23 +51,12 @@ public class GM : MonoBehaviour
 
         // Crear una copia visual en el contenedor
         GameObject newItem = Instantiate(item, purchasedItemsContainer);
-        customizeButtons.Add(newItem.gameObject.GetComponent<SelectModel>());
+        GameManager.Instance.customizeButtons.Add(newItem);
         newItem.SetActive(true);
     }
 
     void UpdateMoneyUI()
     {
         moneyText.text = money.ToString();
-    }
-
-    public void SetSelectedLocation(LocationData location)
-    {
-        selectedLocation = location;
-        Debug.Log(selectedLocation.latitude + " , " + selectedLocation.longitude + " , " + selectedLocation.altitude);
-    }
-
-    public void GoNextScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

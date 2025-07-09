@@ -18,10 +18,10 @@ public class Shop : MonoBehaviour
 
     void AttemptPurchase()
     {
-        if (GM.Instance.TryPurchase(price))
+        if (ShopController.Instance.TryPurchase(price))
         {
             Debug.Log("Compra realizada por $" + price);
-            GM.Instance.AddPurchasedItem(itemToPurchase);
+            ShopController.Instance.AddPurchasedItem(itemToPurchase);
 
             button.interactable = false; // Desactiva el botón
             purchasedText.text = "Comprado";
