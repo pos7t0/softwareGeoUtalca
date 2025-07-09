@@ -8,7 +8,6 @@ public class SelectModel : MonoBehaviour
 
     private Button button;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if(GameManager.Instance.pathPoint == model) markSelected.gameObject.SetActive(true);

@@ -9,8 +9,6 @@ using Mapbox.Unity.MeshGeneration.Factories;
 
 public class SimpleGeospatialController : MonoBehaviour
 {   
-    
-    
     public AREarthManager EarthManager;
     public ARAnchorManager AnchorManager;
     public TMP_Text DebugText;
@@ -30,7 +28,7 @@ public class SimpleGeospatialController : MonoBehaviour
     }
 
     [SerializeField] private List<GeospatialObject> m_geospatialObjects = new List<GeospatialObject>();
-    [SerializeField] private DirectionsFactory directionsFactory; // arrastra el GameObject que tiene DirectionsFactory
+    [SerializeField] private DirectionsFactory directionsFactory;
 
 
     void Update()
@@ -66,12 +64,11 @@ public class SimpleGeospatialController : MonoBehaviour
         {
             var anchor = ARAnchorManagerExtensions.AddAnchor(
                 AnchorManager,
-                geoPoint.x, geoPoint.y, 149.40, // Altitud 0 o puedes calcularla
+                geoPoint.x, geoPoint.y, 134.7,
                 Quaternion.identity);
 
             if (anchor != null && m_geospatialObjects.Count > 0)
             {
-                // Puedes usar el primer prefab de la lista, o tener uno especial para esto
                 Instantiate(m_geospatialObjects[0].ObjectPrefab, anchor.transform);
             }
         }

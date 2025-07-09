@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public LocationData selectedLocation;
 
     public GameObject pathPoint;
-    public List<GameObject> customizeButtons = new List<GameObject>();
+    public List<GameObject> customizeButtons = new List<GameObject>(); //Botones de pantalla de personalización
 
     private void Awake()
     {

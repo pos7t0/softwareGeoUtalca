@@ -89,14 +89,14 @@ public class SearchController : MonoBehaviour
         return numberA.CompareTo(numberB);
     }
 
-    private int ExtractTrailingNumber(string input)
+    private int ExtractTrailingNumber(string input) //Only considers numbers at the end of the string
     {
-        System.Text.RegularExpressions.Match match = System.Text.RegularExpressions.Regex.Match(input, @"\d+");
+        var match = System.Text.RegularExpressions.Regex.Match(input, @"(\d+)$");
         if (match.Success)
         {
             int.TryParse(match.Value, out int number);
             return number;
         }
-        return 0; // if no number found
+        return 0;
     }
 }
