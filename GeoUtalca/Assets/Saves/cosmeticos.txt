@@ -1,0 +1,16 @@
+{
+    "cosmeticos": [
+        {
+            "nombre": "Gorro",
+            "valor": 100,
+            "adquirido": false,
+            "image": "Images/descarga"
+        },
+        {
+            "nombre": "Chaleco",
+            "valor": 200,
+            "adquirido": false,
+            "image": "Images/descarga2"
+        }
+    ]
+}

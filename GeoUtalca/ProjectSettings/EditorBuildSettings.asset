@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/ARCore Extensions/1.48.0/Geospatial Sample/Scenes/GeospatialArf5.unity
     guid: 1e5d96b9ed94e442dbbfddf2475baf5c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/pruebas geospatial.unity
     guid: fe3fc16b1b0c9104aa80cd4bea4dca56
   - enabled: 0
@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GeospatialArf5_c1_mapbox.unity
     guid: a729a561ebf3c8f48bed5a74c4cfcdff
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: 35dfb5478d6f23549833fc6b27f06a4f
+  - enabled: 1
+    path: Assets/Scenes/Registrar.unity
+    guid: d72713c7363efa841ae1c9bfad1b7440
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
