@@ -18,7 +18,7 @@ public class LogIn : MonoBehaviour
         string usuario = inputUsuario.text;
         string contraseña = inputContraseña.text;
         string contraseñaNueva = inputContraseñaDeNuevo.text;
-        int i= GameManager.Instance.RegistrarUsuario(usuario, contraseña, contraseñaNueva);
+        int i= BDManager.Instance.RegistrarUsuario(usuario, contraseña, contraseñaNueva);
         switch (i)
         {
             case 0:
@@ -48,7 +48,7 @@ public class LogIn : MonoBehaviour
         }
         if (m_canRegister)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Login");
         }   
     }
 
@@ -56,14 +56,14 @@ public class LogIn : MonoBehaviour
     {
         string usuario = inputUsuario.text;
         string contraseña = inputContraseña.text;
-        m_canLogIn= GameManager.Instance.LogIn(usuario, contraseña);
+        m_canLogIn= BDManager.Instance.LogIn(usuario, contraseña);
         if (m_canLogIn)
-            ChangeScene(2);
+            ChangeScene("pruebas geospatial");
         else
-            m_warningUsers.text="Nombre o contraseña incorrecta" ;
+            m_warningUsers.text="Nombre o contraseña incorrecta";
     }
 
-    public void ChangeScene( int scene)
+    public void ChangeScene( string scene)
     {
         SceneManager.LoadScene(scene);
     }
