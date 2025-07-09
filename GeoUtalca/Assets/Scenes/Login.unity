@@ -1124,7 +1124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1388021174}
         m_TargetAssemblyTypeName: LogIn, Assembly-CSharp
-        m_MethodName: BotonIniciarSesion
+        m_MethodName: GoNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

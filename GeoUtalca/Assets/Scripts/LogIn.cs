@@ -67,4 +67,9 @@ public class LogIn : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+
+    public void GoNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
