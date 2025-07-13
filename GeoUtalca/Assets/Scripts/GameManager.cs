@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public LocationData selectedLocation;
+    public List<LocationData> locationHistory = new List<LocationData>();
 
     public GameObject pathPoint;
     public List<GameObject> customizeButtons = new List<GameObject>(); //Botones de pantalla de personalización
@@ -33,12 +34,18 @@ public class GameManager : MonoBehaviour
     public void SetSelectedLocation (LocationData location)
     {
         selectedLocation = location;
+        locationHistory.Add(location);
         Debug.Log(selectedLocation.latitude +" , "+selectedLocation.longitude + " , " + selectedLocation.altitude);
     }
 
     public void GoNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void GoLastScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
 
