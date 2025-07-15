@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject pathPoint;
     public List<GameObject> customizeButtons = new List<GameObject>(); //Botones de pantalla de personalización
 
+    public string usuario;
+
     private void Awake()
     {
         // Singleton
@@ -45,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void GoLastScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Menus");
     }
 }
 

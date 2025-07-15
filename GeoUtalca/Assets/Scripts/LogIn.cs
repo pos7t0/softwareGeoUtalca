@@ -58,7 +58,10 @@ public class LogIn : MonoBehaviour
         string contraseña = inputContraseña.text;
         m_canLogIn= BDManager.Instance.LogIn(usuario, contraseña);
         if (m_canLogIn)
-            ChangeScene("pruebas geospatial");
+        {
+            GameManager.Instance.usuario = usuario;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
         else
             m_warningUsers.text="Nombre o contraseña incorrecta";
     }
